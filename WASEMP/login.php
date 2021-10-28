@@ -24,7 +24,7 @@ if (isset($_POST['login'])){
                     $_SESSION['id'] = $row['id'];
                     header("Location:Admin/Accounts.php");
             }else{
-                $sql = "SELECT * FROM sampleaccount WHERE email = '".$user."' AND Password = '".$pword."'"; 
+                $sql = "SELECT * FROM visitor WHERE email = '".$user."' AND Password = '".$pword."'"; 
                 $result = mysqli_query($con, $sql);
                 if (mysqli_num_rows($result)>0){
                     $row = mysqli_fetch_assoc($result);

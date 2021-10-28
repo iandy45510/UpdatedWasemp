@@ -1,6 +1,6 @@
 <?php
 
-$con =new mysqli('localhost','root','12345','test_db');
+$con =new mysqli('localhost','root','','wasempmain');
 if(!$con){
     echo "Connection Failed!";
 }

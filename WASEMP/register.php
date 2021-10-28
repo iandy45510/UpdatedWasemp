@@ -95,14 +95,15 @@ if(isset($_POST['submit'])){
     $email=$_POST['emailadd'];
     $Password=$_POST['Pword'];
 
-    $sql="INSERT INTO `sampleaccount`(`id`, `Fname`, `Sname`, `Mname`, `Paddress`, `Caddress`, `age`, `mobile`, `barangay`, `email`, `Password`)
+    $sql="INSERT INTO `visitor`(`id`, `fname`, `sname`, `mname`, `caddress`, `paddress`, `age`, `mobile`, `barangay`, `email`, `password`)
     VALUES ('$Fname','$Sname','$Mname','$Paddress','$Caddress','$age','$mobile','$mobile','$barangay','$email','$Password')";
 
     $result=mysqli_query($con,$sql);
     if($result){
-    echo "Registered Sucessfully";
+        header("Location:Index.php?error=Registered Sucessfully!");
     }else{
         echo "Connection Failed!";
     }
+
 }
 ?>
