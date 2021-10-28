@@ -24,9 +24,20 @@ if (isset($_POST['login'])){
                     $_SESSION['id'] = $row['id'];
                     header("Location:Admin/Accounts.php");
             }else{
-                header("Location: index.php?error=Incorrect Password/Username");
-                exit();
+                $sql = "SELECT * FROM sampleaccount WHERE email = '".$user."' AND Password = '".$pword."'"; 
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result)>0){
+                    $row = mysqli_fetch_assoc($result);
+                        $_SESSION['username'] = $row['uname'];
+                        $_SESSION['name'] = $row['name'];
+                        $_SESSION['id'] = $row['id'];
+                        header("Location:User/Information.php");
+            }else{
+            header("Location: index.php?error=Incorrect Password/Username");
+            exit();
             }
         } 
     }
-}?>
+}
+}
+?>

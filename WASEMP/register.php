@@ -15,65 +15,65 @@
         <div class="form-group">
             <label>First Name</label>
             <input type="text" class="form-control"placeholder="Enter your First Name"
-            name = "Fname" autocomplete="off"> 
+            name = "Firstname" autocomplete="off" id ="Firstname"  > 
         </div>
 
         <div class="form-group">
             <label>Surname</label>
             <input type="text" class="form-control"placeholder="Enter your Surname"
-            name = "Sname" autocomplete="off"> 
+            name = "Surname" autocomplete="off" id ="Surname" > 
         </div>
 
         <div class="form-group">
             <label>Middle Initial</label>
             <input type="text" class="form-control"placeholder="Enter your Middle Initial"
-            name = "Mname" autocomplete="off"> 
+            name = "Midname" autocomplete="off" id ="Midname" > 
         </div>
 
         <div class="form-group">
             <label>Permanent Address</label>
             <input type="text" class="form-control"placeholder="Enter your Permanent Address"
-            name = "Paddress" autocomplete="off"> 
+            name = "PerAdd" autocomplete="off" id ="PerAdd" > 
         </div>
 
         <div class="form-group">
             <label>Current Address</label>
             <input type="text" class="form-control"placeholder="Enter your Current Address"
-            name = "Caddress" autocomplete="off"> 
+            name = "CurAdd" autocomplete="off" id = "CurAdd" > 
         </div>
 
         <div class="form-group">
             <label>Age</label>
             <input type="text" class="form-control"placeholder="Enter your Age"
-            name = "age" autocomplete="off"> 
+            name = "age" autocomplete="off" id ="age" > 
         </div>
 
         <div class="form-group">
             <label>Contact Number</label>
             <input type="text" class="form-control"placeholder="Enter your Contact Number"
-            name = "mobile" autocomplete="off"> 
+            name = "num" autocomplete="off"id ="num" > 
         </div>
 
         <div class="form-group">
             <label>Barangay</label>
             <input type="text" class="form-control"placeholder="Enter your Barangay"
-            name = "barangay" autocomplete="off"> 
+            name = "brgy" autocomplete="off" id = "brgy" > 
         </div>
 
         <div class="form-group">
             <label>Email Address</label>
             <input type="email" class="form-control"placeholder="Enter your Email Address"
-            name = "email" autocomplete="off"> 
+            name = "emailadd" autocomplete="off" id = "emailadd" > 
         </div>
 
         <div class="form-group">
             <label>Password</label>
             <input type="text" class="form-control"placeholder="Enter your Password"
-            name = "Password" autocomplete="off"> 
+            name = "Pword" autocomplete="off" id = "Pword"  > 
         </div>
-        
+        <br>
 
-  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+  <input type="submit" class="btn btn-primary" name="submit" value="Submit Form">
 </form>
 </div>
 </body>
@@ -81,26 +81,26 @@
 
 <?php
 session_start();
-include 'datacon.php';
+include ('datacon.php');
 if(isset($_POST['submit'])){
 
-    $Fname=$_POST['Fname'];
-    $Sname=$_POST['Sname'];
-    $Mname=$_POST['Mname'];
-    $Paddress=$_POST['Paddress'];
-    $Caddress=$_POST['Caddress'];
+    $Fname=$_POST['Firstname'];
+    $Sname=$_POST['Surname'];
+    $Mname=$_POST['Midname'];
+    $Paddress=$_POST['PerAdd'];
+    $Caddress=$_POST['CurAdd'];
     $age=$_POST['age'];
-    $mobile=$_POST['mobile'];
-    $barangay=$_POST['barangay'];
-    $email=$_POST['email'];
-    $Password=$_POST['Password'];
+    $mobile=$_POST['num'];
+    $barangay=$_POST['brgy'];
+    $email=$_POST['emailadd'];
+    $Password=$_POST['Pword'];
 
-    $sql="insert into visitor(fname,sname,mname,caddress,paddress,age,mobile,barangay,email,password)
-    values('$Fname','$Sname','$Mname','$Paddress','$Caddress','$age','$mobile','$mobile','$barangay','$email','$Password')";
+    $sql="INSERT INTO `sampleaccount`(`id`, `Fname`, `Sname`, `Mname`, `Paddress`, `Caddress`, `age`, `mobile`, `barangay`, `email`, `Password`)
+    VALUES ('$Fname','$Sname','$Mname','$Paddress','$Caddress','$age','$mobile','$mobile','$barangay','$email','$Password')";
 
     $result=mysqli_query($con,$sql);
     if($result){
-        echo "Registered Sucessfully";
+    echo "Registered Sucessfully";
     }else{
         echo "Connection Failed!";
     }

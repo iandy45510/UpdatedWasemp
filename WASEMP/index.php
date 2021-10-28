@@ -17,7 +17,7 @@
             <input type = "password" name = "pass" placeholder ="Password"><br>
 
             <button type = "submit" name = "login">LOGIN</button>
-            <a href="Register.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Register</a>
+            <a href="register.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Register</a>
         </form>
     </body>
 
