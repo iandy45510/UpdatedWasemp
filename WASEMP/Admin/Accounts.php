@@ -1,3 +1,21 @@
+<?php
+include ('datacon.php');
+
+if($con->connect_error){
+	echo $con->connect_error;
+}
+
+$sql = "Select * FROM visitor";
+$visitor = $con ->query($sql) or die ($con->error);
+$row = $visitor->fetch_assoc();
+
+///do {
+	/// echo $row['fname']." ".$row['sname']." ".$row['mname']." ".$row['caddress']." ".$row['padress']." ".$row['age']." ".$row['mobile']." ".$row['barangay']." ".$row['email']. "<br/";
+//// }while($row = $visitor->fetch_assoc());
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,64 +40,79 @@
 			</nav>
 			        <!--search button  -->
 					<div class="search">
-						<form class="form" >
+						<form action = "" method = "GET">
 						  <div class="input-group">
-							  <input class="form-control" type="text" placeholder="Search" aria-label="Search" style="padding-left: 30px; border-radius: 30px;" id="mysearch">
-							  <div class="input-group-addon" style="margin-left: 50px; z-index: 3; border-radius: 40px; background-color: transparent; border:none;">
-								<button class="btn  btn-lg-3" type="submit" style="border-radius: 20px;" id="search-btn">
-						 
+						  <div class="input-group mb-3">
+						  <input type="text" class="form-control" name = "search" value = "<?php if(isset($_GET['search'])){echo $_GET['search'];} ?>" placeholder="Search">
+ 						  <button type = "Submit" class= "btn btn-primary">Search</button>
+</form>
 
-									
-		   </div>
-		</div>
-		<!-- dropdown -->
-		<div class="container">
-		  <div class="row">
-			  <form class="col-md-4"> 
-				  <select class="form-control select2">
-					 <option>option1</option> 
-					 <option>option2</option> 
-					 <option>option3</option> 
-					 <option>option4</option> 
-					 <option>option5</option> 
-					 <option>option6</option> 
-				  </select>
-			  </form>
-		   </div>
-		</div>
-		<script>
-			$('.select2').select2();
-		</script>
-		</div>
+<?php
+	if(isset($_GET['search']))
+	{
+		$filtervalues = $_GET['search'];
+		$query = "SELECT * FROM visitor WHERE CONCAT (id,fname,sname,mname,caddress,paddress,age,mobile,barangay,email) LIKE '%$filtervalues% ";
+		$query_run = mysqli_query($con,$query);
+		if($query_run > 0)
+		{ 
+
+			foreach($query_run as $items)
+			{
+				$row = $visitor->fetch_assoc();
+			} 
+		}
+		else {
+			?>
+			<tr>
+				<td colspan="4"> No record Found</td>
+		</tr>
+		<?php
+		}
+	}
+	
+?>
+
+</div>
+						 
 		 <!-- table -->
 		 <table class="table">
 			<thead class="thead-dark">
 			  <tr>
-				
+			  <th scope="row"></th>
+			    <td>ID</td>
+				<td>First Name </td>
+				<td>Last name</td>
+				<td>Middle name</td>
+				<td>Current Address</td>
+				<td>Present Address</td>
+				<td>Age</td>
+				<td>Mobile</td>
+				<td>Barangay</td>
+				<td>Email</td>
 			  </tr>
 			</thead>
 			<tbody>
+			  <?php do{ ?>
 			  <tr>
-				<th scope="row">1</th>
-				<td>option1</td>
-				<td>option2</td>
-				<td>@</td>
+				<th scope="row"></th>
+				<td><?php echo $row['id'];?></td>
+				<td><?php echo $row['fname'];?></td>
+				<td><?php echo $row['sname'];?></td>
+				<td><?php echo $row['mname'];?></td>
+				<td><?php echo $row['caddress'];?></td>
+				<td><?php echo $row['paddress'];?></td>
+				<td><?php echo $row['age'];?></td>
+				<td><?php echo $row['mobile'];?></td>
+				<td><?php echo $row['barangay'];?></td>
+				<td><?php echo $row['email'];?></td>
 			  </tr>
+			  <?php  }while($row = $visitor->fetch_assoc())  ?>
 			  <tr>
-				<th scope="row">2</th>
-				<td>option1</td>
-				<td>option2</td>
-				<td>@</td>
-			  </tr>
-			  <tr>
-				<th scope="row">3</th>
-				<td>option1</td>
-				<td>option2</td>
-				<td>@</td>
-
 			  </tr>
 			</tbody>
 		  </table>
+
+
  <!-- sms Button -->
  <div class="sms ">
 	<div class="message">

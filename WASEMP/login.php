@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'dbcon.php';
+include 'conn/datacon.php';
 if (isset($_POST['login'])){
     $user = $_POST['uname'];
     $pword = $_POST['pass'];

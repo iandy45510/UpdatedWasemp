@@ -1,3 +1,10 @@
+<?php
+include ('datacon.php');
+$sql = "Select * FROM visitor";
+$visitor = $con ->query($sql) or die ($con->error);
+$row = $visitor->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
