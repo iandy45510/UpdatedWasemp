@@ -22,7 +22,7 @@ if (isset($_POST['login'])){
                     $_SESSION['username'] = $row['uname'];
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['id'] = $row['id'];
-                    header("Location:Admin/Accounts.php");
+                    header("Location:Admin/Account.php");
             }else{
                 $sql = "SELECT * FROM visitor WHERE email = '".$user."' AND Password = '".$pword."'"; 
                 $result = mysqli_query($con, $sql);
