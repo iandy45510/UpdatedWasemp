@@ -4,14 +4,17 @@ include 'conn/datacon.php';
 if (isset($_POST['login'])){
     $user = $_POST['uname'];
     $pword = $_POST['pass'];
-    if($con){
-        function validate($data){
+    if($con)
+    {
+        function validate($data)
+        {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
             return $data;
         }
-        if(empty($user) || empty($pword)){
+        if(empty($user) || empty($pword))
+        {
             header("Location: index.php?error=Username/Password is Required");
             exit();
         }else{

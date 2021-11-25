@@ -1,10 +1,18 @@
+<?php
+include ('datacon.php');
+
+if($con->connect_error){ 
+	echo $con->connect_error;
+}
+
+?>
 <!DOCTYPE html>
 <html style="padding-top: 0px;padding-right: 0px;">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blank Page - Brand</title>
+    <title>Backtracking-WASEMP</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -21,6 +29,23 @@
     <link rel="stylesheet" href="assets/css/Table-with-search-1.css">
     <link rel="stylesheet" href="assets/css/Table-with-search.css">
     <link rel="stylesheet" href="assets/css/untitled.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script>
+    <script>$(document).ready( function () {
+    $('#myTable').DataTable();
+    } );
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup",function(){
+                var value =$(this).val().toLowerCase();
+                $("#myTable tr").Filter(function(){
+                    $(this).toggle($(this).text().toLowerCase(),indexOf(value) > -1)
+                })
+            })
+        })
+</script>
 </head>
 
 <body id="page-top">
@@ -41,7 +66,7 @@
                         <a class="nav-link" href=""><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
                         <a class="nav-link" href="" style="text-shadow: 0px 0px;"><i class="fas fa-sms"></i><span style="height: 0px;">SMS</span></a>
                         <a class="nav-link" href="" style="margin: 0px;"><i class="fas fa-bug"></i><span>Report</span></a>
-                        <a class="nav-link" href="" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        <a class="nav-link" href="/wasemprev2/logout.php" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -65,7 +90,8 @@
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
                 </nav>
                 <!-- table -->
-                <div class="container" style="padding-top: 74px;"><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <div class="container" style="padding-top: 74px;">
+                <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                  <th>Name</th>
@@ -73,18 +99,26 @@
                 <th>Place</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Luffy</td>
-                <td>10/10/21-10:30</td>
-                <td>SM</td>
-               
-            </tr>
-            <tr>
-              
-            </tr>
-        </tbody>
-    </table></div>
+        <tbody >
+        <?php
+					$sql = mysqli_query($con,"Select * FROM backtracking");
+					$count =1;
+					$row = mysqli_num_rows($sql);
+					if($row > 0){
+					while($row =mysqli_fetch_array($sql)){
+				?>
+			 <tr>
+				<td><?php echo $row['Name'];?></td>
+				<td><?php echo $row['DATE'];?></td>
+				<td><?php echo $row['LOCATION'];?></td>
+			  </tr>
+			  <?php 
+			  $count = $count+1;
+			}}		
+				?>
+			</tbody>
+    </table>
+</div>
             </div>
         </div>
     </div>
