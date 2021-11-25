@@ -1,11 +1,3 @@
-<?php
-include ('datacon.php');
-
-if($con->connect_error){ 
-	echo $con->connect_error;
-}
-
-?>
 <!DOCTYPE html>
 <html style="padding-top: 0px;padding-right: 0px;">
 
@@ -29,23 +21,6 @@ if($con->connect_error){
     <link rel="stylesheet" href="assets/css/Table-with-search-1.css">
     <link rel="stylesheet" href="assets/css/Table-with-search.css">
     <link rel="stylesheet" href="assets/css/untitled.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script>
-    <script>$(document).ready( function () {
-    $('#myTable').DataTable();
-    } );
-    </script>
-    <script>
-        $(document).ready(function(){
-            $("#myInput").on("keyup",function(){
-                var value =$(this).val().toLowerCase();
-                $("#myTable tr").Filter(function(){
-                    $(this).toggle($(this).text().toLowerCase(),indexOf(value) > -1)
-                })
-            })
-        })
-</script>
 </head>
 
 <body id="page-top">
@@ -55,14 +30,16 @@ if($con->connect_error){
                     <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-church"></i></div>
                     <div class="sidebar-brand-text mx-3"><span>Wasemp</span></div>
                 </a>
-
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item">
                         <a class="nav-link" href="blank.html"><i class="fa fa-user"></i><span>Account</span></a>
+                        <a class="nav-link" href="blank.html"><i class="fas fa-server"></i><span>List Of Server</span></a>
                         <a class="nav-link" href="blank.html"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
                         <a class="nav-link" href="blank.html"><i class="fas fa-qrcode"></i><span>QR</span></a>
                         <a class="nav-link" href="blank.html"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
+                        <a class="nav-link" href="blank.html" style="text-shadow: 0px 0px;"><i class="fas fa-sms"></i><span style="height: 0px;">SMS</span></a>
+                        <a class="nav-link" href="blank.html" style="margin: 0px;"><i class="fas fa-bug"></i><span>Report</span></a>
                         <a class="nav-link" href="blank.html" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
                         </a>
                     </li>
@@ -77,7 +54,6 @@ if($con->connect_error){
                         </a>
                     </div>
                 </footer>
-
                 <footer class="footer-dark" style="background: var(--bs-dark);transform: rotate(-91deg);padding: 0px 0px;"></footer>
             </div>
         </nav>
@@ -87,15 +63,14 @@ if($con->connect_error){
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" style="padding-left: 0px;padding-right: 0px;margin-right: 0px;margin-left: -9px;">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
                 </nav>
-                <!-- time&date, textbox, button -->
+                <!-- Date,textbox,button -->
                 <div class="container">
-                    <div class="row"><div class="col-md-4" style="padding-top: 50px;padding-right: 12px;padding-left: 42px;"><input type="date" /></div>
-                        <div class="col-md-4" style="padding-top: 49px;"><input type="text" placeholder ="input Location Here"></div>
+                    <div class="row" style="width: 901.4px;"><div class="col-md-4" style="padding-top: 50px;padding-right: 12px;padding-left: 42px;"><input type="date" /></div><div class="col-md-4" style="padding-top: 49px;"><input type="text" placeholder="Location" /></div>
                         <div class="col-md-4" style="padding-top: 46px;"><button class="btn btn-primary" type="button" style="background: var(--bs-green);">CONFIRM</button></div>
                     </div>
                 </div>
                 <!-- table -->
-                <div class="container" style="margin-top: 0px;padding-top: 140px;"><table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <div class="container" style="padding-top: 15px;"><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>DATE & TIME</th>
@@ -103,23 +78,11 @@ if($con->connect_error){
              
             </tr>
         </thead>
-        <tbody >
-        <?php
-					$sql = mysqli_query($con,"Select * FROM backtracking");
-					$count =1;
-					$row = mysqli_num_rows($sql);
-					if($row > 0){
-					while($row =mysqli_fetch_array($sql)){
-				?>
-			 <tr>
-				<td><?php echo $row['DATE'];?></td>
-				<td><?php echo $row['LOCATION'];?></td>
-			  </tr>
-			  <?php 
-			  $count = $count+1;
-			}}		
-				?>
-			</tbody>
+        <tbody>
+            <tr>
+                
+            </tr>
+        </tbody>
     </table></div>
             </div>
         </div>
