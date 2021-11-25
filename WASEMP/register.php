@@ -25,8 +25,8 @@
         </div>
 
         <div class="form-group">
-            <label>Middle Initial</label>
-            <input type="text" class="form-control"placeholder="Enter your Middle Initial"
+            <label>Middle Name</label>
+            <input type="text" class="form-control"placeholder="Enter your Middle Name"
             name = "Midname" autocomplete="off" id ="Midname" > 
         </div>
 
@@ -83,7 +83,7 @@
 session_start();
 include ('conn/datacon.php');
 if(isset($_POST['submit'])){
-
+    
     $Fname=$_POST['Firstname'];
     $Sname=$_POST['Surname'];
     $Mname=$_POST['Midname'];
@@ -95,8 +95,8 @@ if(isset($_POST['submit'])){
     $email=$_POST['emailadd'];
     $Password=$_POST['Pword'];
 
-    $sql="INSERT INTO `visitor`(`id`, `fname`, `sname`, `mname`, `caddress`, `paddress`, `age`, `mobile`, `barangay`, `email`, `password`)
-    VALUES ('$Fname','$Sname','$Mname','$Paddress','$Caddress','$age','$mobile','$mobile','$barangay','$email','$Password')";
+    $sql="INSERT INTO `visitor`(`fname`, `sname`, `mname`, `caddress`, `paddress`, `age`, `mobile`, `barangay`, `email`, `password`)
+    VALUES ('$Fname','$Sname','$Mname','$Paddress','$Caddress','$age','$mobile','$barangay','$email','$Password')";
 
     $result=mysqli_query($con,$sql);
     if($result){

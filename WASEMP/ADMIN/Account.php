@@ -31,9 +31,11 @@ if($con->connect_error){
     <link rel="stylesheet" href="assets/css/untitled.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script>
     <script>$(document).ready( function () {
     $('#myTable').DataTable();
-    } );</script>
+    } );
+    </script>
     <script>
         $(document).ready(function(){
             $("#myInput").on("keyup",function(){
@@ -61,10 +63,10 @@ if($con->connect_error){
                       <a class="nav-link " href="List Of Server.php"><i class="fas fa-server"></i><span>List Of Server</span></a>
                       <a class="nav-link " href="Analytics.php"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
                       <a class="nav-link " href="QR.php"><i class="fas fa-qrcode"></i><span>QR</span></a>
-                      <a class="nav-link " href="BackTracking.php"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
+                      <a class="nav-link " href="Backtracking.php"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
                       <a class="nav-link " href="#" style="text-shadow: 0px 0px;"><i class="fas fa-sms"></i><span style="height: 0px;">SMS</span></a>
                       <a class="nav-link " href="#" style="margin: 0px;"><i class="fas fa-bug"></i><span>Report</span></a>
-                      <a class="nav-link " href="#" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                      <a class="nav-link " href="/wasemprev2/logout.php" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
                       </a>
                     </li>
                 </ul>
@@ -92,7 +94,7 @@ if($con->connect_error){
             <tr>
                 <th>ID</th>
                 <th>First Name</th>
-                <th>Last Name</th>
+                <th>Surname</th>
                 <th>Middle Name</th>
                 <th>Current Address</th>
                 <th>Present Address</th>
@@ -128,6 +130,54 @@ if($con->connect_error){
 				?>
 			</tbody>
     </table>
+    <div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="#" target="_blank"><img src="https://via.placeholder.com/100x100/.png?text=Your+ad+here" alt="ad space" class="img-responsive img-circle"></a>
+                                            </div>
+                                            <div class="col-md-6"><input type="text" class="form-control-plaintext" value="Information
+                                                         " readonly /></div>
+                                        </div>
+                                    </div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">Timestamp</a></li>
+                                            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Backtracking</a></li>
+                                            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Health Declaration</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                   <p>content for 1</p>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" role="tabpanel" id="tab-2">
+                                                <p>Content for tab 2.</p>
+                                            </div>
+                                            <div class="tab-pane" role="tabpanel" id="tab-3">
+                                                <p>Content for tab 3.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 </div>
             </div>
         </div>
