@@ -33,11 +33,11 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item">
-                        <a class="nav-link " href="blank.html"><i class="fa fa-user"></i><span>Account</span></a>
-                        <a class="nav-link " href="blank.html"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
-                        <a class="nav-link " href="blank.html"><i class="fas fa-qrcode"></i><span>QR</span></a>
-                        <a class="nav-link " href="blank.html"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
-                        <a class="nav-link " href="blank.html" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        <a class="nav-link " href="Account.php"><i class="fa fa-user"></i><span>Account</span></a>
+                        <a class="nav-link " href="Analytics.php"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
+                        <a class="nav-link " href="qr.php"><i class="fas fa-qrcode"></i><span>QR</span></a>
+                        <a class="nav-link " href="Backtracking.php"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
+                        <a class="nav-link " href="/wasemprev2/logout.php" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
                         </a>
                     </li>
                 </ul>

@@ -25,22 +25,47 @@ if (isset($_POST['login'])){
                     $_SESSION['username'] = $row['uname'];
                     $_SESSION['name'] = $row['name'];
                     $_SESSION['id'] = $row['id'];
-                    header("Location:Admin/Account.php");
+                    header("Location:user/Account.php");
             }else{
                 $sql = "SELECT * FROM visitor WHERE email = '".$user."' AND Password = '".$pword."'"; 
                 $result = mysqli_query($con, $sql);
                 if (mysqli_num_rows($result)>0){
                     $row = mysqli_fetch_assoc($result);
-                        $_SESSION['username'] = $row['uname'];
-                        $_SESSION['name'] = $row['name'];
-                        $_SESSION['id'] = $row['id'];
-                        header("Location:User/Information.php");
+                    $_SESSION['name'] = $row['fname'];
+                    $_SESSION['surn'] = $row['sname'];
+                    $_SESSION['mid'] = $row['mname'];
+                    $_SESSION['agg'] = $row['age'];
+                    $_SESSION['mbile'] = $row['mobile'];
+                    $_SESSION['curad'] = $row['caddress'];
+                    $_SESSION['perad'] = $row['paddress'];
+                    $_SESSION['barG'] = $row['barangay'];
+                    $_SESSION['netM'] = $row['email'];
+                    $_SESSION['id'] = $row['id']; 
+                        header("Location:User/Account.php");
+            }
+            else{
+                $sql = "SELECT * FROM visitor WHERE mobile = '".$user."' AND Password = '".$pword."'"; 
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result)>0){
+                    $row = mysqli_fetch_assoc($result);
+                    $_SESSION['name'] = $row['fname'];
+                    $_SESSION['surn'] = $row['sname'];
+                    $_SESSION['mid'] = $row['mname'];
+                    $_SESSION['agg'] = $row['age'];
+                    $_SESSION['mbile'] = $row['mobile'];
+                    $_SESSION['curad'] = $row['caddress'];
+                    $_SESSION['perad'] = $row['paddress'];
+                    $_SESSION['barG'] = $row['barangay'];
+                    $_SESSION['netM'] = $row['email'];
+                        $_SESSION['id'] = $row['id'];   
+                        header("Location:User/Account.php");
             }else{
             header("Location: index.php?error=Incorrect Password/Username");
             exit();
             }
         } 
     }
+}
 }
 }
 ?>
