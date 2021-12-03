@@ -1,11 +1,21 @@
 <?php
 include ('datacon.php');
-
+session_start();
+$uid = $_SESSION['id'];
+$uname = $_SESSION['name'];
+$mid = $_SESSION['mid'];
+$surr = $_SESSION['surn'];
+$curr = $_SESSION['curad'];
+$perma = $_SESSION['perad'];
+$bgay = $_SESSION['barG'];
+$mmail = $_SESSION['netM'];
+$mobi = $_SESSION['mbile'];
+$ag = $_SESSION['agg'];
 if($con->connect_error){ 
 	echo $con->connect_error;
 }
-
 ?>
+
 <!DOCTYPE html>
 <html style="padding-top: 0px;padding-right: 0px;">
 
@@ -59,11 +69,11 @@ if($con->connect_error){
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item">
-                        <a class="nav-link" href="blank.html"><i class="fa fa-user"></i><span>Account</span></a>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-qrcode"></i><span>QR</span></a>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
-                        <a class="nav-link" href="blank.html" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        <a class="nav-link" href="Account.php"><i class="fa fa-user"></i><span>Account</span></a>
+                        <a class="nav-link" href="Analytics.php"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
+                        <a class="nav-link" href="qr.php"><i class="fas fa-qrcode"></i><span>QR</span></a>
+                        <a class="nav-link" href="Backtracking.php"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
+                        <a class="nav-link" href="/wasemprev2/logout.php" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -87,31 +97,30 @@ if($con->connect_error){
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" style="padding-left: 0px;padding-right: 0px;margin-right: 0px;margin-left: -9px;">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
                 </nav>
-<<<<<<< HEAD:WASEMP/User/BackTrecking.html
-                <!-- date,time,location,button -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <form><label class="form-label">Date</label><input class="form-control" type="date"></form>
-                        </div>
-                        <div class="col-md-3">
-                            <form><label class="form-label">Time</label><input class="form-control" type="time" /></form>
-                        </div>
-                        <div class="col-md-3">
-                            <form><label class="form-label">Location</label><input class="form-control" type="text"></form>
-                        </div>
-                        <div class="col-md-3"><button class="btn btn-primary" type="button" style="padding-bottom: 6px;margin-bottom: 0px;margin-top: 31px;">Button</button></div>
-=======
                 <!-- time&date, textbox, button -->
                 <div class="container">
-                    <div class="row"><div class="col-md-4" style="padding-top: 50px;padding-right: 12px;padding-left: 42px;"><input type="date" /></div>
-                        <div class="col-md-4" style="padding-top: 49px;"><input type="text" placeholder ="input Location Here"></div>
-                        <div class="col-md-4" style="padding-top: 46px;"><button class="btn btn-primary" type="button" style="background: var(--bs-green);">CONFIRM</button></div>
->>>>>>> 87f99f517d1d47c170f228510acc6f533d032398:WASEMP/User/Backtracking.php
+                <form method= "post">
+                    <div class="row">
+                        <div class="col-md-3">
+                        <label>Date</label>
+            <input type="text" class="form-control"placeholder="Date"
+            name = "Datey" autocomplete="off" id = "datey"  > 
+                        </div>Time</label>
+            <input type="text" class="form-control"placeholder="Time"
+            name = "Timey" autocomplete="off" id = "Timey"  > 
+                        </div>
+                        <div class="col-md-3">
+                        <label>Location</label>
+            <input type="text" class="form-control"placeholder="location"
+            name = "Locationn" autocomplete="off" id = "Locationn"  > 
+                        </div>
+                        <div class="col-md-3">
+                        <input type="submit" class="btn btn-primary" name="submit" value="Submit Form">
                     </div>
                 </div>
+    </form>
                 <!-- table -->
-                <div class="container" style="margin-top: 0px;padding-top: 140px;"><table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <div class="container" style="margin-top: 0px;padding-top: 20px;"><table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>DATE & TIME</th>
@@ -120,16 +129,17 @@ if($con->connect_error){
             </tr>
         </thead>
         <tbody >
+        <h1> Hello, <?php echo $_SESSION['name']; ?></h1>
         <?php
-					$sql = mysqli_query($con,"Select * FROM backtracking");
+					$sql = mysqli_query($con,"Select * FROM backtracking WHERE fname = '".$uname."' AND sname = '" .$surr."'");
 					$count =1;
 					$row = mysqli_num_rows($sql);
 					if($row > 0){
 					while($row =mysqli_fetch_array($sql)){
 				?>
 			 <tr>
-				<td><?php echo $row['DATE'];?></td>
-				<td><?php echo $row['LOCATION'];?></td>
+				<td><?php echo $row['date'];?></td>
+				<td><?php echo $row['location'];?></td>
 			  </tr>
 			  <?php 
 			  $count = $count+1;
@@ -148,3 +158,24 @@ if($con->connect_error){
 </body>
 
 </html>
+
+<?php
+if(isset($_POST['submit'])){
+    
+    $FirstNameee=$_POST[$_SESSION['name']];
+    $Surnameee=$_POST[$_SESSION['surn']];
+    $date=$_POST['datey'];
+    $time=$_POST['Timey'];
+    $location=$_POST['Locationn'];
+
+    $sql="INSERT INTO `backtracking`(`fname`, `sname`, `date`, `time`, `location`)
+    VALUES ('$FirstNameee','$Surnameee','$date', '$time','$location')";
+
+$result=mysqli_query($con,$sql);
+    if($result){
+        header("Location:Backtracking.php?error=Registered Sucessfully!");
+    }else{
+        echo "Connection Failed!";
+    }
+
+}?>

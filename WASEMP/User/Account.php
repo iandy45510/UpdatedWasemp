@@ -1,10 +1,17 @@
+
 <?php
+session_start();
 include ('datacon.php');
-
-if($con->connect_error){ 
-	echo $con->connect_error;
-}
-
+$uid = $_SESSION['id'];
+$uname = $_SESSION['name'];
+$mid = $_SESSION['mid'];
+$surr = $_SESSION['surn'];
+$curr = $_SESSION['curad'];
+$perma = $_SESSION['perad'];
+$bgay = $_SESSION['barG'];
+$mmail = $_SESSION['netM'];
+$mobi = $_SESSION['mbile'];
+$ag = $_SESSION['agg'];
 ?>
 <!DOCTYPE html>
 <html style="padding-top: 0px;padding-right: 0px;">
@@ -12,7 +19,7 @@ if($con->connect_error){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Information</title>
+    <title>Account</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -41,11 +48,11 @@ if($con->connect_error){
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item">
-                        <a class="nav-link " href="Information.php"><i class="fa fa-user"></i><span>Account</span></a>
-                        <a class="nav-link " href="Analytics.php"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
-                        <a class="nav-link " href="QR.php"><i class="fas fa-qrcode"></i><span>QR</span></a>
-                        <a class="nav-link " href="Backtracking.php"><i class="fas fa-location-arrow"></i><span>BackTracking</span></a>
-                        <a class="nav-link " href="/wasemprev2/logout.php" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        <a class="nav-link" href="Account.php"><i class="fa fa-user"></i><span>Account</span></a>
+                        <a class="nav-link" href="Analytics.php"><i class="fas fa-chart-pie"></i><span>Analytics</span></a>
+                        <a class="nav-link" href="qr.php"><i class="fas fa-qrcode"></i><span>QR</span></a>
+                        <a class="nav-link" href="Backtracking.php"><i class="fas fa-location-arrow"></i><span>Backtracking</span></a>
+                        <a class="nav-link" href="/wasemprev2/logout.php" style="margin: 0px;"><i class="fas fa-sign-out-alt"></i><span>Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -68,26 +75,47 @@ if($con->connect_error){
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" style="padding-left: 0px;padding-right: 0px;margin-right: 0px;margin-left: -9px;">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button></div>
                 </nav>
-                <!-- image & text table-->
+                <!-- picture -->
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <picture><img></picture>
+                    <div class="row" style="width: 1023.4px;">
+                        <div class="col-md-4" style="width: 337.7px;height: 190px;">
+                            <picture><img src="assets/img/thumb_15951118880user.png" style="height: 136px;padding-right: 0px;padding-left: 98px;"></picture>
+                            <!--text plain  -->
+                        </div><div class="col-md-4">
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">First Name: <?php echo $_SESSION['name']; ?></label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Surname: <?php echo $_SESSION['surn']; ?></label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Middle Name: <?php echo $_SESSION['mid']; ?></label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Age: <?php echo $_SESSION['agg']; ?></label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Mobile: <?php echo $_SESSION['mbile']; ?></label>
+                            <br>
                         </div>
-                        <div class="col-md-6" style="padding-top: 29px;"><input type="text"></div>
+                        <div class="col-md-4">
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Current Address: <?php echo $_SESSION['curad']; ?> </label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Present Address: <?php echo $_SESSION['perad']; ?></label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Barangay: <?php echo $_SESSION['barG']; ?></label>
+                            <br>
+                            <label class="form-label" style="font-weight: bold;color: var(--bs-dark);">Email: <?php echo $_SESSION['netM']; ?></label>
+                            <br>
+                        </div>
                     </div>
                 </div>
                 <!-- table -->
-                <div class="container" style="margin-top: 0px;padding-top: 140px;"><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <div class="container" style="padding-top: 78px;"><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>DATE & TIME</th>
-                
+                <th>TIME & Date</th>
+              
             </tr>
         </thead>
         <tbody>
             <tr>
-                
+               
             </tr>
         </tbody>
     </table></div>
